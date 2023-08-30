@@ -28,10 +28,13 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Copy GUI application
+COPY gui /app/gui
+
 COPY --from=compile-image /opt/venv /opt/venv
 COPY --from=compile-image /app /app
 COPY --from=compile-image /root/nltk_data /root/nltk_data
 
 ENV PATH="/opt/venv/bin:$PATH"
 
-EXPOSE 8001
+EXPOSE 8001 3000
