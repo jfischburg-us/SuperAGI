@@ -1,0 +1,188 @@
+{
+  "aadProfile": null,
+  "addonProfiles": null,
+  "agentPoolProfiles": [
+    {
+      "availabilityZones": null,
+      "count": 1,
+      "creationData": null,
+      "currentOrchestratorVersion": "1.26.6",
+      "enableAutoScaling": false,
+      "enableEncryptionAtHost": false,
+      "enableFips": false,
+      "enableNodePublicIp": false,
+      "enableUltraSsd": false,
+      "gpuInstanceProfile": null,
+      "hostGroupId": null,
+      "kubeletConfig": null,
+      "kubeletDiskType": "OS",
+      "linuxOsConfig": null,
+      "maxCount": null,
+      "maxPods": 110,
+      "minCount": null,
+      "mode": "System",
+      "name": "nodepool1",
+      "nodeImageVersion": "AKSUbuntu-2204gen2containerd-202308.22.0",
+      "nodeLabels": null,
+      "nodePublicIpPrefixId": null,
+      "nodeTaints": null,
+      "orchestratorVersion": "1.26.6",
+      "osDiskSizeGb": 128,
+      "osDiskType": "Managed",
+      "osSku": "Ubuntu",
+      "osType": "Linux",
+      "podSubnetId": null,
+      "powerState": {
+        "code": "Running"
+      },
+      "provisioningState": "Succeeded",
+      "proximityPlacementGroupId": null,
+      "scaleDownMode": null,
+      "scaleSetEvictionPolicy": null,
+      "scaleSetPriority": null,
+      "spotMaxPrice": null,
+      "tags": null,
+      "type": "VirtualMachineScaleSets",
+      "upgradeSettings": {
+        "drainTimeoutInMinutes": null,
+        "maxSurge": null
+      },
+      "vmSize": "Standard_DS2_v2",
+      "workloadRuntime": null
+    }
+  ],
+  "apiServerAccessProfile": null,
+  "autoScalerProfile": null,
+  "autoUpgradeProfile": {
+    "nodeOsUpgradeChannel": "NodeImage",
+    "upgradeChannel": null
+  },
+  "azureMonitorProfile": null,
+  "azurePortalFqdn": "gopt-gopt-4f52ba-2wyk3ugb.portal.hcp.eastus2.azmk8s.io",
+  "currentKubernetesVersion": "1.26.6",
+  "disableLocalAccounts": false,
+  "diskEncryptionSetId": null,
+  "dnsPrefix": "GoPT-GoPT-4f52ba",
+  "enablePodSecurityPolicy": null,
+  "enableRbac": true,
+  "extendedLocation": null,
+  "fqdn": "gopt-gopt-4f52ba-2wyk3ugb.hcp.eastus2.azmk8s.io",
+  "fqdnSubdomain": null,
+  "httpProxyConfig": null,
+  "id": "/subscriptions/4f52ba89-b806-423c-aa03-f9495c8f046a/resourcegroups/GoPT/providers/Microsoft.ContainerService/managedClusters/GoPT",
+  "identity": {
+    "delegatedResources": null,
+    "principalId": "0057f44e-885f-411a-aacf-d57d1b83bd81",
+    "tenantId": "6313b5bc-e8f0-4a25-adc2-91dc663e5569",
+    "type": "SystemAssigned",
+    "userAssignedIdentities": null
+  },
+  "identityProfile": {
+    "kubeletidentity": {
+      "clientId": "045c8acb-93b2-474b-93e1-9a89aab02eeb",
+      "objectId": "bc71ea75-ae20-47a4-9c2c-5747aa8ea10f",
+      "resourceId": "/subscriptions/4f52ba89-b806-423c-aa03-f9495c8f046a/resourcegroups/MC_GoPT_GoPT_eastus2/providers/Microsoft.ManagedIdentity/userAssignedIdentities/GoPT-agentpool"
+    }
+  },
+  "kubernetesVersion": "1.26.6",
+  "linuxProfile": {
+    "adminUsername": "azureuser",
+    "ssh": {
+      "publicKeys": [
+        {
+          "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDed5KdPLomIDGVWn7vhIn4EaIzveRQoolXmZpd/GZ4iR3txe5XnzwRQ+OWylhGBjh7pTmoTjinVhRk49XGm83rpDz641SzgCJlBg4c/gHAjp7dM+dwVa4hcgLVJTTpLtHy10YVE+z6EFQUDwU9JU77MSSXaSzG2rFgBoblFHmJ8qHKlhEdgKyfrR0Ggu6HS/JiwyPhbugJizVsEip9QE6udkPy/FRq2XNhMyCeRd6P0lx2duIKm+6sy03U8uFj3mhXVQUz/JXgBng60+LL5BvivBwzwI8HAny9i58DzGvYCjmoxm+iSrWVjaLmMSvIdaDyo6afsd3z9lmEW4qgicf5"
+        }
+      ]
+    }
+  },
+  "location": "eastus2",
+  "maxAgentPools": 100,
+  "name": "GoPT",
+  "networkProfile": {
+    "dnsServiceIp": "10.0.0.10",
+    "ipFamilies": [
+      "IPv4"
+    ],
+    "loadBalancerProfile": {
+      "allocatedOutboundPorts": null,
+      "effectiveOutboundIPs": [
+        {
+          "id": "/subscriptions/4f52ba89-b806-423c-aa03-f9495c8f046a/resourceGroups/MC_GoPT_GoPT_eastus2/providers/Microsoft.Network/publicIPAddresses/8006d367-5509-44c9-a8a7-fbd2072941a8",
+          "resourceGroup": "MC_GoPT_GoPT_eastus2"
+        }
+      ],
+      "enableMultipleStandardLoadBalancers": null,
+      "idleTimeoutInMinutes": null,
+      "managedOutboundIPs": {
+        "count": 1,
+        "countIpv6": null
+      },
+      "outboundIPs": null,
+      "outboundIpPrefixes": null
+    },
+    "loadBalancerSku": "Standard",
+    "natGatewayProfile": null,
+    "networkDataplane": null,
+    "networkMode": null,
+    "networkPlugin": "kubenet",
+    "networkPluginMode": null,
+    "networkPolicy": null,
+    "outboundType": "loadBalancer",
+    "podCidr": "10.244.0.0/16",
+    "podCidrs": [
+      "10.244.0.0/16"
+    ],
+    "serviceCidr": "10.0.0.0/16",
+    "serviceCidrs": [
+      "10.0.0.0/16"
+    ]
+  },
+  "nodeResourceGroup": "MC_GoPT_GoPT_eastus2",
+  "oidcIssuerProfile": {
+    "enabled": false,
+    "issuerUrl": null
+  },
+  "podIdentityProfile": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "privateFqdn": null,
+  "privateLinkResources": null,
+  "provisioningState": "Succeeded",
+  "publicNetworkAccess": null,
+  "resourceGroup": "GoPT",
+  "securityProfile": {
+    "azureKeyVaultKms": null,
+    "defender": null,
+    "imageCleaner": null,
+    "workloadIdentity": null
+  },
+  "servicePrincipalProfile": {
+    "clientId": "msi"
+  },
+  "sku": {
+    "name": "Base",
+    "tier": "Free"
+  },
+  "storageProfile": {
+    "blobCsiDriver": null,
+    "diskCsiDriver": {
+      "enabled": true
+    },
+    "fileCsiDriver": {
+      "enabled": true
+    },
+    "snapshotController": {
+      "enabled": true
+    }
+  },
+  "supportPlan": "KubernetesOfficial",
+  "systemData": null,
+  "type": "Microsoft.ContainerService/ManagedClusters",
+  "upgradeSettings": null,
+  "windowsProfile": null,
+  "workloadAutoScalerProfile": {
+    "keda": null,
+    "verticalPodAutoscaler": null
+  }
+}
