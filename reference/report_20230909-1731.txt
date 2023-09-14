@@ -1,0 +1,15 @@
+
+SuperAGI Tools Summary Report
+
+Date: 20230909-1731
+
+1. SuperAGI Coding Tool:
+   - Assists with writing, reviewing, and refactoring code, fixing bugs, and understanding programming concepts.
+
+2. SuperAGI DuckDuckGo Search Tool:
+   - Helps users perform internet searches and extract snippets and webpages.
+
+3. SuperAGI Email Tool:
+   - Allows users to read and send emails, including emails with attachments.
+
+Each tool requires some setup and configuration, and the files provide instructions for these processes. Once set up, the tools can be used on the fly to perform their respective tasks.
