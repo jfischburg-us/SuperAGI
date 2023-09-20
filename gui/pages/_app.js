@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import SideBar from './Dashboard/SideBar';
 import Content from './Dashboard/Content';
 import TopBar from './Dashboard/TopBar';
@@ -16,15 +16,15 @@ import {
   addUser,
   installToolkitTemplate, installAgentTemplate, installKnowledgeTemplate
 } from "@/pages/api/DashboardService";
-import {githubClientId} from "@/pages/api/apiConfig";
+import { githubClientId } from "@/pages/api/apiConfig";
 import {
   getGithubClientId
 } from "@/pages/api/DashboardService";
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import querystring from 'querystring';
-import {refreshUrl, loadingTextEffect} from "@/utils/utils";
+import { refreshUrl, loadingTextEffect } from "@/utils/utils";
 import MarketplacePublic from "./Content/Marketplace/MarketplacePublic"
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function App() {
   const [selectedView, setSelectedView] = useState('');
@@ -68,7 +68,7 @@ export default function App() {
     if (knowledgeTemplateName !== null && knowledgeIndexId !== null) {
       installKnowledgeTemplate(knowledgeTemplateName, knowledgeIndexId)
         .then((response) => {
-          toast.success("Template installed", {autoClose: 1800});
+          toast.success("Template installed", { autoClose: 1800 });
         })
         .catch((error) => {
           console.error('Error installing template:', error);
@@ -80,7 +80,7 @@ export default function App() {
     if (toolkitName !== null) {
       installToolkitTemplate(toolkitName)
         .then((response) => {
-          toast.success("Template installed", {autoClose: 1800});
+          toast.success("Template installed", { autoClose: 1800 });
         })
         .catch((error) => {
           console.error('Error installing template:', error);
@@ -91,7 +91,7 @@ export default function App() {
     if (agentTemplateId !== null) {
       installAgentTemplate(agentTemplateId)
         .then((response) => {
-          toast.success("Template installed", {autoClose: 1800});
+          toast.success("Template installed", { autoClose: 1800 });
         })
         .catch((error) => {
           console.error('Error installing template:', error);
@@ -184,17 +184,17 @@ export default function App() {
   async function signInUser() {
     let github_client_id = githubClientId();
 
-      // If `github_client_id` does not exist, make the API call
-      if (!github_client_id) {
-        const response = await getGithubClientId();
-        github_client_id = response.data.github_client_id;
-      }
-      if(!github_client_id) {
-         console.error('Error fetching github client id make sure to set it in the config file');
-      }
-      else {
-        window.open(`https://github.com/login/oauth/authorize?scope=user:email&client_id=${github_client_id}`, '_self')
-      }
+    // If `github_client_id` does not exist, make the API call
+    if (!github_client_id) {
+      const response = await getGithubClientId();
+      github_client_id = response.data.github_client_id;
+    }
+    if (!github_client_id) {
+      console.error('Error fetching github client id make sure to set it in the config file');
+    }
+    else {
+      window.open(`https://github.com/login/oauth/authorize?scope=user:email&client_id=${github_client_id}`, '_self')
+    }
   }
 
   useEffect(() => {
@@ -219,42 +219,37 @@ export default function App() {
     <div className="app">
       <Head>
         <title>SuperAGI</title>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet"/>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-              rel="stylesheet"/>
       </Head>
-      {showMarketplace && <div className="projectStyle"><MarketplacePublic env={env}/></div>}
+      {showMarketplace && <div className="projectStyle"><MarketplacePublic env={env} /></div>}
       {applicationState === 'AUTHENTICATED' && !showMarketplace ? (<div className="projectStyle">
         <div className="sideBarStyle">
-          <SideBar onSelectEvent={handleSelectionEvent} env={env}/>
+          <SideBar onSelectEvent={handleSelectionEvent} env={env} />
         </div>
         <div className="workSpaceStyle">
           <div className="topBarStyle">
-            <TopBar selectedProject={selectedProject} organisationId={organisationId} userName={userName} env={env}/>
+            <TopBar selectedProject={selectedProject} organisationId={organisationId} userName={userName} env={env} />
           </div>
           <div className="contentStyle">
             <Content env={env} organisationId={organisationId} selectedView={selectedView}
-                     selectedProjectId={selectedProject?.id || ''}/>
+              selectedProjectId={selectedProject?.id || ''} />
           </div>
         </div>
       </div>) : !showMarketplace ? (<div className="signInStyle">
         <div className="signInTopBar">
           <div className="superAgiLogo"><Image width={132} height={72} src="/images/sign-in-logo.svg"
-                                               alt="super-agi-logo"/></div>
+            alt="super-agi-logo" /></div>
         </div>
         <div className="signInCenter">
           {applicationState === 'NOT_AUTHENTICATED' && !showMarketplace ? <div className="signInWrapper">
             <button className="signInButton" onClick={signInUser}>
-              <Image width={20} height={20} src="/images/github.svg" alt="github"/>&nbsp;Continue with Github
+              <Image width={20} height={20} src="/images/github.svg" alt="github" />&nbsp;Continue with Github
             </button>
             <div className="signInInfo">
               By continuing, you agree to Super AGI’s Terms of Service and Privacy Policy, and to receive important
               updates.
             </div>
-          </div> : <div className="signInWrapper" style={{background: 'transparent'}}>
-            <div className="signInInfo" style={{fontSize: '16px', fontFamily: 'Source Code Pro'}}>{loadingText}</div>
+          </div> : <div className="signInWrapper" style={{ background: 'transparent' }}>
+            <div className="signInInfo" style={{ fontSize: '16px', fontFamily: 'Source Code Pro' }}>{loadingText}</div>
           </div>}
         </div>
       </div>) : true}

@@ -1,0 +1,120 @@
+WebSocket connection to 'ws:<URL>/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+websocket.js:65 WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: WebSocket is closed before the connection is established.
+handleDisconnect @ websocket.js:65
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+setTimeout (async)
+handleDisconnect @ websocket.js:66
+eval @ websocket.js:70
+setInterval (async)
+init @ websocket.js:68
+Content.js:100 Toolkits fetched successfully!
+Content.js:110 Array(3)0: {id: 1, name: 'gpt-4', description: 'gpt-4', model_provider: 'OpenAI'}1: {id: 2, name: 'gpt-3.5-turbo', description: 'gpt-3.5-turbo', model_provider: 'OpenAI'}2: {id: 3, name: 'gpt-3.5-turbo-16k', description: 'gpt-3.5-turbo-16k', model_provider: 'OpenAI'}length: 3[[Prototype]]: Array(0)
+Content.js:76 Agents fetched successfully!
+Content.js:134 Knowledge fetched successfully!
+warn-once.js:16 Image with src "/images/settings.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+overrideMethod @ console.js:213
+warnOnce @ warn-once.js:16
+eval @ image.js:211

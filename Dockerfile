@@ -2,10 +2,17 @@
 FROM python:3.10-slim-bullseye AS compile-image
 WORKDIR /app
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y wget libpq-dev gcc g++ && \
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y wget make patch libncurses-dev libpq-dev gcc g++ uuid-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN wget http://ftp.gnu.org/gnu/readline/readline-8.0.tar.gz \
+  && tar xzf readline-8.0.tar.gz \
+  && cd readline-8.0 \
+  && ./configure \ 
+  && make \
+  && make install
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"

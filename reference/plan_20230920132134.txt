@@ -1,0 +1,5 @@
+Plan for creating a custom Docker image with Redis, RedisGears, and RedisAI:
+1. Create a new Dockerfile that starts from the existing Redis image.
+2. Add the necessary commands to install RedisGears and RedisAI in the Dockerfile.
+3. Build the Docker image and test it locally to ensure everything works as expected.
+4. Push the Docker image to the Azure Container Registry.
