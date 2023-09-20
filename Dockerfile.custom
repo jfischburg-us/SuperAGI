@@ -1,1 +1,6 @@
 FROM redis/redis-stack-server:latest
+RUN wget https://github.com/RedisGears/RedisGears/releases/download/v1.0.7/redisgears.linux-bionic-x64.1.0.7.zip -O redis/redisgears.so && \
+wget [RedisAI download URL] -O /path/to/redisai.so
+RUN redis-cli MODULE LOAD /path/to/redisgears.so && \
+redis-cli MODULE LOAD /path/to/redisai.so
+RUN unzip /path/to/redisgears.zip -d /path/to/redisgears
