@@ -1,0 +1,47 @@
+FROM redis/redis-stack-server:latest
+
+# Set vm.overcommit_memory=1
+RUN echo 'vm.overcommit_memory=1' >> /etc/sysctl.conf && sysctl -p /etc/sysctl.conf
+
+# Install prerequisites for RedisGears and RedisAI
+RUN apt-get update -qqy && \
+    apt-get install -qqy python3.10 python3-distutils python3-pip python3-apt wget curl git openssl libssl-dev \
+    pkg-config clang unzip build-essential autoconf libtool libssl-dev gawk libopenblas-dev libmpich-dev git-lfs cmake
+
+# Setup the rustuser
+RUN adduser --disabled-password --gecos "" rustuser
+
+# Set environment variables
+ENV HOME /root
+ENV PATH /root/.cargo/bin:$PATH
+
+# Install Rust
+RUN \
+cd $HOME \
+&& git clone https://github.com/RedisGears/RedisGears.git \
+&& cd RedisGears \
+&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > install_rust.sh \
+&& sh install_rust.sh -y \
+&& cargo build --release \
+&& cd $HOME \
+&& git clone --recursive https://github.com/RedisAI/RedisAI \
+&& cd RedisAI \
+&& ./get_deps.sh \
+&& make -C opt clean ALL=1 \
+&& make -C opt \
+&& mkdir -p /usr/lib/redis/modules \
+&& export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/redis/modules/ \
+&& cp /root/RedisGears/target/release/libredisgears.so /usr/lib/redis/modules/ \
+&& cp /root/RedisGears/target/release/libredisgears_v8_plugin.so /usr/lib/redis/modules/ \
+&& cp /root/RedisAI/bin/linux-x64-release/install-cpu/redisai.so /usr/lib/redis/modules/
+
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/lib/redis/modules/
+
+# Change permissions so rustuser can access the plugins
+RUN chown -R rustuser:rustuser /usr/lib/redis/modules/
+
+# Switch to rustuser
+USER rustuser
+
+# Start Redis server with --loadmodule options to load the plugins
+CMD ["redis-server", "--loadmodule", "/usr/lib/redis/modules/redisai.so", "--loadmodule", "/usr/lib/redis/modules/libredisgears.so"]

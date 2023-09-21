@@ -33,6 +33,9 @@ services:
 #      - /app/node_modules/
 #      - /app/.next/
   super__redis:
+    build:
+      context: .
+      dockerfile: Dockerfile.redis_ai_gears
     image: "redis/redis-stack-server:latest"
     networks:
       - super_network

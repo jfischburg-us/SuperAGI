@@ -1,6 +1,87 @@
 FROM redis/redis-stack-server:latest
-RUN wget https://github.com/RedisGears/RedisGears/releases/download/v1.0.7/redisgears.linux-bionic-x64.1.0.7.zip -O redis/redisgears.so && \
-wget [RedisAI download URL] -O /path/to/redisai.so
-RUN redis-cli MODULE LOAD /path/to/redisgears.so && \
-redis-cli MODULE LOAD /path/to/redisai.so
-RUN unzip /path/to/redisgears.zip -d /path/to/redisgears
+
+# Set vm.overcommit_memory=1
+RUN echo 'vm.overcommit_memory=1' >> /etc/sysctl.conf
+RUN cat /etc/sysctl.conf
+
+# Reload sysctl.conf
+RUN sysctl -p /etc/sysctl.conf
+
+# Setup the rustuser
+RUN adduser --disabled-password --gecos "" rustuser
+ENV HOME /home/rustuser
+
+# Install pre-requisites for RedisGears and RedisAI
+# Initial apt update
+RUN \
+apt-get update -qqy
+
+RUN \
+apt-get install -qqy  apt-transport-https lsb-release ca-certificates software-properties-common
+
+# Add the deadsnkes ppa repository
+RUN \
+add-apt-repository -y ppa:deadsnakes/ppa
+# Update to add the new repository
+RUN \
+apt-get update -qqy
+# Installing python and related utilities
+RUN \
+apt-get install -qqy python3.10 python3-distutils python3-pip python3-apt
+
+RUN \
+apt-get install -qqy wget curl git openssl libssl-dev \
+pkg-config clang unzip
+
+### DOUBLECHECK THIS IS IN THE FINAL SCRIPT
+RUN \
+python3 -m pip install jinja2
+
+RUN \
+echo "Printing Redis Prerequisites:" && \
+echo "Python Version: " && python --version 2>&1 | head -n 1 && \
+echo ".." && \
+echo "Git Version: " && git --version 2>&1 | head -n 1 && \
+echo ".." && \
+echo "Make Version: " && make --version 2>&1 | head -n 1 && \
+echo ".." && \
+echo "wget Version:" && wget --version 2>&1 | head -n 1 && \
+echo ".." && \
+echo "G++ Version: " && g++ -v 2>&1 | tail -n 1 && \
+echo ".." && \
+echo "Clang Version: " && clang -v 2>&1 | head -n 1 && \
+echo ".." && \
+echo "unzip Version: " && unzip -v 2>&1 | head -n 1 && \
+echo ".." && \
+echo "CMake Version: " && cmake --version 2>&1 | head -n 1
+
+## RedisGears:
+# Install Build Tools
+RUN \
+apt-get -qqy install build-essential autoconf libtool libssl-dev gawk libopenblas-dev libmpich-dev git-lfs cmake
+
+# Install Rust
+USER rustuser
+WORKDIR /home/rustuser
+RUN git clone https://github.com/RedisGears/RedisGears.git
+WORKDIR /home/rustuser/RedisGears
+RUN \
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > install_rust.sh \
+&& sh install_rust.sh -y \
+&& export PATH=/home/rustuser/.cargo/bin:$PATH \
+&& cargo build --release
+
+# RUN ln -s /home/rustuser/RedisGears/target/release/libredisgears.so /opt/redis/libredisgears.so
+# RUN ln -s /home/rustuser/RedisGears/target/release/libredisgears_macros_internals.so /opt/redis/libredisgears_macros_internals.so
+# RUN ln -s /home/rustuser/RedisGears/target/release/libredisgears_v8_plugin.so /opt/redis/libredisgears_v8_plugin.so
+
+WORKDIR /home/rustuser
+RUN git clone --recursive https://github.com/RedisAI/RedisAI \
+&& cd RedisAI && ./get_deps.sh \
+&& make -C opt clean ALL=1 && make -C opt
+
+# RUN sudo echo "Hello"
+# RUN sudo ln -s /home/rustuser/RedisAI/bin/linux-x64-release/src/redisai.so /opt/redis/redisai.so
+
+# CMD ["redis-server", "--loadmodule", "/opt/redis/libredisgears.so"]
+#, "--loadmodule", "/opt/redis/libredisgears_macros_internals.so", "--loadmodule", "libredisgears_v8_plugin.so", "--loadmodule", "/home/rustuser/redisai.so"]
